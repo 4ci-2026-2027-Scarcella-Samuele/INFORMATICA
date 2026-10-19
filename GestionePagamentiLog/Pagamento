@@ -1,0 +1,22 @@
+public class Pagamento{
+    private String beneficiario; 
+    private double importo;
+
+    public Pagamento(){
+        this.beneficiario = "";
+        this.importo = 0.0;
+    }
+
+    public Pagamento(String beneficiario, double importo){
+        this.beneficiario = beneficiario;
+        this.importo = importo;
+    }
+
+    public String getBeneficiario(){
+        return this.beneficiario;
+    }
+
+    public double getImporto(){
+        return this.importo;
+    }
+}

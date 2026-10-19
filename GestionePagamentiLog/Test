@@ -1,0 +1,37 @@
+import java.util.Scanner; 
+
+public class Test{
+    public static void main (String [] args){
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("CREAZIONE CONTO BANCARIO");
+        System.out.print("Inserisci il nome dell'intestatario: ");
+        String intestatario = sc.nextLine();
+
+        System.out.print("Inserisci il saldo iniziale (€): ");
+        double saldoIniziale = sc.nextDouble();
+        sc.nextLine();
+
+        Conto conto = new Conto(intestatario, saldoIniziale);
+
+        System.out.println("\nCREAZIONE PAGAMENTO");
+        System.out.print("Inserisci il nome del beneficiario: ");
+        String beneficiario = sc.nextLine();
+
+        System.out.print("Inserisci l'importo da pagare (€): ");
+        double importo = sc.nextDouble();
+
+        Pagamento pagamento = new Pagamento(beneficiario, importo);
+
+        System.out.println("\nTENTATIVO DI PAGAMENTO");
+        boolean esito = conto.effettuaPagamento(pagamento);
+
+        if (esito) {
+            System.out.println("Pagamento di " + pagamento.getImporto() + " € a favore di " + pagamento.getBeneficiario() + " effettuato con successo");
+            System.out.println("Nuovo saldo disponibile: " + conto.getSaldo() + " €");
+        } else {
+            System.out.println("ERRORE: Saldo insufficiente per completare il pagamento di " + pagamento.getImporto() + " €.");
+            System.out.println("Saldo attuale: " + conto.getSaldo() + " €");
+        }
+    }
+}

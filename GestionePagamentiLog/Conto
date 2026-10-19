@@ -1,0 +1,25 @@
+public class Conto{
+    private String intestatario;
+    private double saldo; 
+
+    public Conto(String intestatario, double saldoIniziale){
+        this.intestatario = intestatario;
+        this.saldo = saldoIniziale;
+    }
+
+    public boolean effettuaPagamento(Pagamento pagamento){
+        if(this.saldo >= pagamento.getImporto()){
+            this.saldo -= pagamento.getImporto();
+            return true;
+        }
+        return false
+    }
+
+    public String getIntestario(){
+        return this.intestatario;
+    }
+
+    public double getSaldo(){
+        return this.saldo;
+    }
+}
