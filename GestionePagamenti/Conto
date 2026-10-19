@@ -11,7 +11,7 @@ public class Conto {
         return intestsatario;
     }
 
-    public void setIntestatatio (String intestatario) {
+    public void setIntestatario (String intestatario) {
         this.intestario = intestatario;
     }
 

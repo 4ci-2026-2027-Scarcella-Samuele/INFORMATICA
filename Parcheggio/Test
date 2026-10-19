@@ -1,0 +1,74 @@
+import java.util.Scanner;
+
+public class TestParcheggio {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("CONFIGURAZIONE PARCHEGGIO");
+        System.out.print("Inserisci il costo orario (€): ");
+        double costo = sc.nextDouble();
+
+        System.out.print("Inserisci il numero totale di posti: ");
+        int posti = sc.nextInt();
+        sc.nextLine();
+
+        Parcheggio parcheggio = new Parcheggio(costo, posti);
+
+        int scelta = -1;
+
+        while (scelta != 0) {
+            System.out.println("MENU PARCHEGGIO");
+            System.out.println("Posti disponibili: " + parcheggio.getPostiDisponibili() + " | Costo orario: " + parcheggio.getCostoOrario() + " €/ora");
+            System.out.println("1. Entra (Nuova automobile)");
+            System.out.println("2. Esce (Uscita automobile e calcolo costo)");
+            System.out.println("0. Esci dal programma");
+            System.out.print("Seleziona opzione: ");
+
+            scelta = sc.nextInt();
+            sc.nextLine();
+
+            switch (scelta) {
+                case 1:
+                    System.out.println("\nINGRESSO AUTOMOBILE");
+                    System.out.println("Inserisci targa: ");
+                    String targaEntrata = sc.nextLine();
+                    
+                    System.out.println("Inserisci il modello: ");
+                    String modelloEntrata = sc.nextLine();
+
+                    Car autoEntrata = new Car(targaEntrata, modelloEntrata);
+
+                    if (parcheggio.entra(autoEntrata)) {
+                        System.out.println("Auto: " + autoEntrata.getTarga() + " entrata con successo");
+                    } else {
+                        System.out.println("Parcheggio pieno impossibile entrare");
+                    }
+                    break;
+
+                case 2:
+                    System.out.println("\nUSCITA AUTOMOBILE");
+                    System.out.print("Inserisci targa dell'auto che esce: ");
+                    String targaUscita = sc.nextLine();
+                    
+                    System.out.print("Inserisci ore di sosta: ");
+                    double ore = sc.nextDouble();
+                    sc.nextLine();
+
+                    Car autoUscita = new Car(targaUscita,);
+
+                    double costoSosta = parcheggio.esce(autoUscita, ore);
+                    System.out.println("L'auto: " + targaUscita + " e' uscita.");
+                    System.out.println("Importo totale da pagare: " + costoSosta + " €");
+                    break;
+
+                case 0:
+                    System.out.println("\nFine");
+                    break;
+
+                default:
+                    System.out.println("\nOpzione non valida riprova.");
+                    break;
+            }
+        }
+    }
+}

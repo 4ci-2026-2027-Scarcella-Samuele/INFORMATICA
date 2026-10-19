@@ -1,0 +1,44 @@
+public class Parcheggio{
+    private int postiDisponibili; 
+    private double costoOrario;
+    private ArrayList<Car> autoPresenti;
+
+    public Parcheggio(){
+        this.postiDisponibili = 0;
+        this.costoOrario = 0.0;
+        this.autoPresenti = new ArrayList<Car>();
+    } 
+
+    public Parcheggio(double CostoOrario, int postiDisponibili){
+        this.costoOrario = costoOrario;
+        this.postiDisponibili = postiDisponibili;
+        this.autoPresenti = new ArrayList<Car>();
+    }
+
+    public boolean entra(Car unaAutomobile){
+        if(this.postiDisponibili > 0){
+            this.postiDisponibili--;
+            this.autoPresenti.add(unaAutomobile);
+            return true;
+        }
+        return false;
+    }
+
+    public double esce(Car unaAutomobile, double ore){
+        this.postiDisponibili++;
+        this.autoPresenti.remove(unaAutomobile);
+        return ore * this.costoOrario;
+    }
+
+    public void setPostiDisponibili(int posti){
+        this.postiDisponibili = posti;
+    }
+
+    public int getPostiDisponibili(){
+        return this.postiDisponibili;
+    }
+
+    public double getCostoOrario(){
+        return this.costoOrario;
+    }
+}
