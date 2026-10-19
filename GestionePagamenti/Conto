@@ -7,21 +7,33 @@ public class Conto {
         this.saldo = saldo;
     }
 
-    public String effettuaPagamento(Pagamento pagamento)
-            throws SaldoInsufficienteException {
+    public String getIntestatario() {
+        return intestsatario;
+    }
+
+    public void setIntestatatio (String intestatario) {
+        this.intestario = intestatario;
+    }
+
+    public double getSaldo(){
+        return saldo;
+    }
+
+    public void setSaldo(double Saldo){
+        if(saldo < 0){
+            throw new IllegalArgumentException("Saldo non può essere negativo");
+        }
+        this.saldo = saldo;
+    }
+
+    public String effettuaPagamento(Pagamento pagamento) throws SaldoInsufficienteException {
 
         if (pagamento.getImporto() <= 0) {
-            throw new IllegalArgumentException(
-                    "L'importo del pagamento deve essere 
-                     maggiore di zero."
-            );
+            throw new IllegalArgumentException("L'importo del pagamento deve essere maggiore di zero.");
         }
 
         if (pagamento.getImporto() > saldo) {
-            throw new SaldoInsufficienteException(
-                    "Saldo insufficiente per effettuare il 
-                     pagamento."
-            );
+            throw new SaldoInsufficienteException("Saldo insufficiente per effettuare il pagamento.");
         }
 
         saldo = saldo - pagamento.getImporto();
@@ -32,9 +44,5 @@ public class Conto {
         out+="\n Importo: "+ pagamento.getImporto();
         out+="\n Saldo residuo: " + saldo;
         return out;
-    }
-
-    public double getSaldo() {
-        return saldo;
     }
 }

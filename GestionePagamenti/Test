@@ -1,36 +1,32 @@
 public class Test {
-
     public static void main(String[] args) {
 
         Conto conto = new Conto("Mario Rossi", 500.00);
 
-        Pagamento pagamento1 =
-                new Pagamento("Supermercato", 120.00);
+        System.out.println("Intestatario conto: " + conto.getIntestatario());
+        System.out.println("Saldo conto: " + conto.getSaldo());
 
-        Pagamento pagamento2 =
-                new Pagamento("Negozio di elettronica", 600.00);
-                try {   
-                    System.out.println(
-conto.effettuaPagamento(pagamento1));
-                }
-                   catch (SaldoInsufficienteException e) {
-                   System.out.println("Errore: " + 
-                   e.getMessage());
-                }
+        Pagamento pagamento1 = new Pagamento("Supermercato", 120.00);
+
+        Pagamento pagamento2 = new Pagamento("Negozio di elettronica", 600.00);
+        
+        try {   
+            System.out.println(conto.effettuaPagamento(pagamento1));
+        } catch (SaldoInsufficienteException e) {
+            System.out.println("Errore: " + e.getMessage());
+        }
 
         System.out.println();
 
         try {
-              
-                 System.out.println(
-                 conto.effettuaPagamento(pagamento2));
+            System.out.println(conto.effettuaPagamento(pagamento2));
         }
         catch (SaldoInsufficienteException e) {
             System.out.println("Errore: " + e.getMessage());
         }
 
         System.out.println();
-        System.out.println("Saldo finale: " + 
-                            conto.getSaldo());
+
+        System.out.println("Saldo finale: " + conto.getSaldo());
     }
 }

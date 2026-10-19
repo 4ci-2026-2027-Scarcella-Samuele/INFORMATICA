@@ -7,8 +7,19 @@ public class Pagamento {
         this.importo = importo;
     }
 
+    public void setBeneficiario(String beneficiario) {
+        this.beneficiario = beneficiario;
+    }
+
     public String getBeneficiario() {
         return beneficiario;
+    }
+
+    public void setImporto (double importo) {
+        if(importo <= 0) { 
+            throw new IllegalArgumentException("L'importo deve essere maggiore di zero");
+        }
+        this.importo = importo;
     }
 
     public double getImporto() {
