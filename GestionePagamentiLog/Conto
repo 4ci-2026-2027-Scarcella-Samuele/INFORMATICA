@@ -2,6 +2,11 @@ public class Conto{
     private String intestatario;
     private double saldo; 
 
+    public Conto(){
+        this.intestatario = "";
+        this.saldo = "";
+    }
+
     public Conto(String intestatario, double saldoIniziale){
         this.intestatario = intestatario;
         this.saldo = saldoIniziale;
