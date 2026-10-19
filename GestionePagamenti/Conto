@@ -1,0 +1,40 @@
+public class Conto {
+    private String intestatario;
+    private double saldo;
+
+    public Conto(String intestatario, double saldo) {
+        this.intestatario = intestatario;
+        this.saldo = saldo;
+    }
+
+    public String effettuaPagamento(Pagamento pagamento)
+            throws SaldoInsufficienteException {
+
+        if (pagamento.getImporto() <= 0) {
+            throw new IllegalArgumentException(
+                    "L'importo del pagamento deve essere 
+                     maggiore di zero."
+            );
+        }
+
+        if (pagamento.getImporto() > saldo) {
+            throw new SaldoInsufficienteException(
+                    "Saldo insufficiente per effettuare il 
+                     pagamento."
+            );
+        }
+
+        saldo = saldo - pagamento.getImporto();
+
+        String out="";
+        out+="Pagamento effettuato.";
+        out+="\n Beneficiario: "+pagamento.getBeneficiario();
+        out+="\n Importo: "+ pagamento.getImporto();
+        out+="\n Saldo residuo: " + saldo;
+        return out;
+    }
+
+    public double getSaldo() {
+        return saldo;
+    }
+}
